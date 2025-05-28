@@ -1,141 +1,108 @@
-/* Responsive Layout Overrides for Franky Portfolio */
-
-/* Reset box-sizing */
+/* Reset geral */
 body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Helvetica Neue', Arial, sans-serif;
-  }
-  
-  /* Base typography formatting */
-  aside {
-    letter-spacing: 0.05em;
-    line-height: 1.6;
-  }
-  aside a {
-    display: block;
-    padding: 0.25rem 0;
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  #mobile-header {
-    letter-spacing: 0.1em;
-  }
-  #mobile-header button {
-    transition: transform 0.3s ease;
-  }
-  #mobile-header button:active {
-    transform: rotate(90deg);
-  }
-  
-  /* Sidebar always visible on desktop */
-  @media (min-width: 1025px) {
-    #sidebar {
-      display: block !important;
-      position: fixed;
-      width: 25%;
-      min-height: 100vh;
-      transform: none !important;
-      opacity: 1 !important;
-      animation: none !important;
-    }
-    main {
-      margin-left: 25% !important;
-      width: 75% !important;
-      padding: 2rem !important;
-    }
-    #mobile-header {
-      display: none !important;
-    }
-  }
-  
-  /* Mobile/tablet styles */
-  @media (max-width: 1024px) {
-    .flex {
-      flex-direction: column;
-    }
-    #sidebar {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 70%;
-      height: 100%;
-      background: #000;
-      z-index: 1000;
-      padding: 2rem;
-      transform: translateX(-100%);
-    }
-    #sidebar.active {
-      display: block;
-      transform: translateX(0);
-      opacity: 1;
-      transition: transform 0.4s ease;
-    }
-    main {
-      margin-left: 0 !important;
-      width: 100% !important;
-      padding: 1rem !important;
-      margin-top: 4rem !important;
-    }
-    #mobile-header {
-      display: flex !important;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem;
-      background: #000;
-      position: sticky;
-      top: 0;
-      z-index: 1100;
-    }
-  }
-  
-  /* Masonry adjustments */
-  @media (max-width: 1024px) {
-    .masonry {
-      column-count: 2;
-    }
-  }
-  @media (max-width: 640px) {
-    .masonry {
-      column-count: 1;
-    }
-  }
-  
-  /* Typography scaling */
-  @media (max-width: 640px) {
-    .text-4xl { font-size: 1.75rem; }
-    .text-2xl { font-size: 1.25rem; }
-    #sidebar .text-2xl { font-size: 1.5rem; }
-    #sidebar .text-xs { font-size: 0.75rem; text-transform: none; }
-  }
-  
-  /* Masonry images */
-  .masonry-item img {
-    width: 100%;
-    height: auto;
-  }
-  
-  /* Animation tweaks */
-  @media (max-width: 640px) {
-    .logo-anim {
-      animation-duration: 1.2s;
-    }
-  }
-  
-  /* Sidebar state transitions */
-  #sidebar {
-    transition: transform 0.4s ease, opacity 0.4s ease;
-  }  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
 
-  @media (max-width: 768px) {
-    main {
-      padding-top: 1rem !important;
-    }
-    #page-content {
-        padding-top: 0 !important;
-        margin-top: 0 !important;
-      }
+/* Sidebar Desktop */
+@media (min-width: 1025px) {
+  #sidebar {
+    display: block !important;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    padding: 3rem 1.5rem;
+    transition: none !important;
+    z-index: 1200;
   }
   
+  main {
+    margin-left: 25%;
+    padding: 2rem;
+    width: 75%;
+  }
+
+  #sidebar > * {
+    opacity: 1 !important;
+    display: block !important;
+  }
+}
+
+/* Sidebar Mobile */
+@media (max-width: 1024px) {
+  #sidebar .text-3xl.title-font {
+    display: none !important;
+  }
+  #sidebar {
+    display: block !important; /* sempre visível para o script ativar */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70vw;
+    max-width: 300px;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    padding: 3rem 1.5rem;
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1300;
+  }
+
+  #sidebar.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #sidebar > * {
+    opacity: 1;
+    display: block;
+  }
+
+  main {
+    margin-left: 0 !important;
+    width: 100% !important;
+    padding: 1rem !important;
+    margin-top: 4rem !important; /* para header fixo */
+  }
+
+  #mobile-header {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background: #000;
+    z-index: 1400;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  #sidebar {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    display: block !important;
+  }
+
+  #sidebar-overlay {
+    display: none !important;
+  }
+}
