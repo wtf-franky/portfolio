@@ -1,24 +1,211 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="description" content="Franky - Baterista freelancer especializado em Rock e Metal. Portfolio com trabalhos e vídeos recentes." />
+  <meta name="keywords" content="Franky, baterista, freelancer, rock, metal, portfolio, música, bateria" />
+  <meta name="author" content="Franky" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Franky | Baterista Freelancer</title>
-  <link rel="stylesheet" href="responsive-layout.css">
+  <link rel="stylesheet" href="responsive-layout.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @keyframes logoIntro { 0% { opacity: 0; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.2); } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
-    .logo-anim { animation: logoIntro 1.5s ease forwards; }
-    .fade-out { animation: fadeOut 0.8s ease forwards; }
-    .fade-in { animation: fadeIn 0.8s ease forwards; }
-    .masonry { column-count: 3; column-gap: 1rem; }
-    @media (max-width: 1024px) { .masonry { column-count: 2; } }
-    @media (max-width: 640px) { .masonry { column-count: 1; } }
-    .masonry-item { break-inside: avoid; margin-bottom: 1rem; opacity: 0; }
-    .masonry-item img { width: 100%; height: auto; display: block; transition: filter 0.3s; }
-    .masonry-item:hover img { filter: brightness(0.75); }
+    .title-font {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+  font-weight: 500;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+  .text-shadow {
+  text-shadow: 2px 2px 4px rgba(255,69,0,0.7);
+}
+    @keyframes logoIntro {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.2);
+      }
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+    .logo-anim {
+      animation: logoIntro 1.5s ease forwards;
+    }
+    .fade-out {
+      animation: fadeOut 0.8s ease forwards;
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+    .masonry {
+      column-count: 3;
+      column-gap: 1rem;
+    }
+    @media (max-width: 1024px) {
+      .masonry {
+        column-count: 2;
+      }
+    }
+    @media (max-width: 640px) {
+      .masonry {
+        column-count: 1;
+      }
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      opacity: 0;
+    }
+    .masonry-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: filter 0.3s;
+    }
+    .masonry-item:hover img {
+      filter: brightness(0.75);
+    }
+    .btn-press-kit {
+      display: inline-block;
+      padding: 10px 20px;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .btn-press-kit:hover {
+      background-color: #fff;
+      color: #ff4500;
+    }
+    #sobre {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: 0;
+      text-align: right;
+      color: #ddd;
+      padding: 0;
+      margin-bottom: 4rem;
+      background-color: transparent;
+      border-radius: 0;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+    }
+    #sobre h2 {
+      color: #ff4500;
+      text-align: right;
+      margin-bottom: 1rem;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+    }
+    #sobre hr {
+      width: 4rem;
+      margin-left: auto;
+      margin-right: 0;
+      border-color: #555;
+      margin-bottom: 1.5rem;
+    }
+    #sobre p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      opacity: 0.8;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: right;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+    }
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70vw;
+  max-width: 300px;
+  height: 100vh;
+  background-color: #000; /* preto */
+  padding: 3rem 1.5rem;
+  box-sizing: border-box;
+  color: white;
+  z-index: 1100;
+  pointer-events: none;
+  transform: translateX(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Quando ativo, mostra o menu lateral */
+#sidebar.active {
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  z-index: 1200;
+}
+
+/* Overlay que escurece o resto da página */
+#sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1100;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+}
+
+/* Overlay ativo */
+#sidebar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+    #sidebar a {
+      color: white;
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: large;
+      letter-spacing: 2px;
+    }
+
+    #sidebar a:hover {
+      color: #ff4500;
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden">
@@ -26,86 +213,138 @@
   <!-- Loader Intro -->
   <div id="loader" class="fixed inset-0 bg-black z-50 flex items-center justify-center">
     <div id="logo" class="logo-anim text-center">
-      <div class="text-white text-4xl uppercase font-bold">Franky</div>
+      <div class="text-3xl title-font" style="color: #ff4500;">Franky</div>
       <div class="text-white text-xl uppercase mt-2 opacity-75">Baterista</div>
     </div>
   </div>
 
   <!-- Mobile Header -->
   <header class="flex md:hidden items-center justify-between px-6 py-4 bg-black text-white fixed top-0 left-0 w-full z-40" id="mobile-header">
-    <div class="text-xl font-bold uppercase">Franky</div>
+    <div class="text-2xl title-font" style="color: #ff4500;">Franky</div>
+
     <button id="menu-toggle" class="text-white text-2xl focus:outline-none">☰</button>
   </header>
 
   <div class="flex opacity-0 pt-16 md:pt-0" id="page-content">
-    <!-- Sidebar (desktop) & Mobile toggle -->
-    <aside class="hidden md:block w-1/4 min-h-screen px-6 py-12 bg-black z-30" id="sidebar">
+    <!-- Sidebar (mobile starts hidden) -->
+    <aside class="md:block w-1/4 min-h-screen px-6 py-12 bg-black z-30" id="sidebar">
       <div class="space-y-6">
-        <div class="text-2xl font-bold uppercase" style="cursor: default;">Franky</div>
+        <div class="text-3xl title-font" style="color: #ff4500;">Franky</div>
         <div class="uppercase text-xs opacity-50" style="cursor: default;">Portfolio</div>
         <nav class="mt-8 space-y-2 text-sm">
           <div class="opacity-50 uppercase text-xs" style="cursor: default;">Trabalhos:</div>
           <ul class="space-y-2">
             <li><a class="hover:underline" style="cursor: default;">Trancoso com Catana - 2023</a></li>
-            <li><a href="https://youtu.be/VoT-lA9fmjg?si=FIns07ACJC_LmEEe" target="_blank" class="hover:underline" style="cursor: pointer;">MEO Marés Vivas com Catana - 2024</a></li>
-            <li><a class="hover:underline" style="cursor: default;">Fábrica da Criatividade com Catana - 2025</a></li>
+            <li><a href="https://youtu.be/VoT-lA9fmjg?si=FIns07ACJC_LmEEe" target="_blank" class="hover:underline" style="cursor: pointer;">MEO Marés Vivas com Catana -2024</a></li>
+            <li><a class="hover:underline" style="cursor: default;">Pêndulo com Catana - 2025</a></li>
             <li><a class="hover:underline" style="cursor: default;">Freixial com Semião - 2025</a></li>
           </ul>
         </nav>
         <div class="mt-12 space-y-2 text-sm">
           <div class="opacity-50 uppercase text-xs" style="cursor: default;">Redes Sociais:</div>
-          <a href="https://www.instagram.com/_wtf.franky/" target="_blank" class="hover:underline" style="cursor: pointer;">Instagram</a>
+          <a href="https://www.instagram.com/_wtf.franky/" target="_blank" class="hover:underline" style="cursor: pointer;">Instagram</a><br>
           <a href="https://www.youtube.com/@Franky_drummer" target="_blank" class="hover:underline" style="cursor: pointer;">YouTube</a>
           <a class="hover:underline" style="cursor: text;">wtf.franky05@gmail.com</a>
+          <a href="Press Kit.pdf" download class="btn-press-kit">Download Press-Kit</a>
         </div>
       </div>
     </aside>
+    <div id="sidebar-overlay"></div>
 
-    <!-- Gallery Content -->
     <main class="flex-1 ml-0 md:ml-[25%] px-6 py-12">
+      <!-- Section Sobre -->
+      <section id="sobre" class="mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #ff4500; text-align: right;">Sobre Mim</h2>
+        <hr class="border-t border-gray-700 w-16 mx-auto mb-6" />
+        <p>
+          Olá, sou o Franky, baterista freelancer com paixão por Rock e Metal.
+          Tenho experiência em vários géneros musicais e já trabalhei com artistas como o Catana.
+          Este portfolio mostra alguns dos meus trabalhos mais recentes e a minha dedicação à música.
+        </p>
+      </section>
+
+      <!-- Gallery Content -->
       <div class="masonry">
-        <div class="masonry-item"><a><img src="img/Trancoso2023.png" alt="2023 Trancoso com Catana"><div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;"><span class="font-semibold" style="cursor: default;">2023</span> Trancoso com Catana</div></a></div>
-        <div class="masonry-item"><a href="https://youtu.be/VoT-lA9fmjg?si=FIns07ACJC_LmEEe" target="_blank"><img src="img/MV2024.png" alt="2024 MEO Marés Vivas com Catana"><div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: pointer;"><span class="font-semibold" style="cursor: pointer;">2024</span> MEO Marés Vivas com Catana</div></a></div>
-        <div class="masonry-item"><a><img src="img/Pendulo2025.jpeg" alt="2025 Pêndulo – Fábrica da Criatividade com Catana"><div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;"><span class="font-semibold" style="cursor: default;">2025</span> Pêndulo – Fábrica da Criatividade com Catana</div></a></div>
-        <div class="masonry-item"><a><img src="img/Freixial2025.jpg" alt="2025 Freixial com Semião"><div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;"><span class="font-semibold" style="cursor: default;">2025</span> Freixial com Semião</div></a></div>
+        <div class="masonry-item">
+          <a>
+            <img src="img/Trancoso2023.png" loading="lazy" alt="2023 Trancoso com Catana" />
+            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;">
+              <span class="font-semibold" style="cursor: default;">2023</span> Trancoso com Catana
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a href="https://youtu.be/VoT-lA9fmjg?si=FIns07ACJC_LmEEe" target="_blank">
+            <img src="img/MV2024.png" loading="lazy" alt="2024 MEO Marés Vivas com Catana" />
+            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: pointer;">
+              <span class="font-semibold" style="cursor: pointer;">2024</span> MEO Marés Vivas com Catana
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a>
+            <img src="img/Pendulo2025.jpeg" loading="lazy" alt="2025 Pêndulo – Fábrica da Criatividade com Catana" />
+            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;">
+              <span class="font-semibold" style="cursor: default;">2025</span> Pêndulo – Fábrica da Criatividade com Catana
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a>
+            <img src="img/Freixial2025.jpg" loading="lazy" alt="2025 Freixial com Semião" />
+            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;">
+              <span class="font-semibold" style="cursor: default;">2025</span> Freixial com Semião
+            </div>
+          </a>
+        </div>
       </div>
     </main>
   </div>
 
-    <!-- Updated JS script -->
-<script>
+  <!-- JS script -->
+  <script>
     window.addEventListener('load', () => {
       const loader = document.getElementById('loader');
       const mobileHeader = document.getElementById('mobile-header');
-    
-      // Ensure mobile header is hidden initially
+      const menuBtn = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      const page = document.getElementById('page-content');
+
       if (window.innerWidth <= 768) {
         mobileHeader.style.opacity = '0';
       }
-    
+
       setTimeout(() => {
         loader.classList.add('fade-out');
         loader.addEventListener('animationend', () => loader.remove());
-    
-        // Smoothly fade in mobile header after intro if on mobile
+
         if (window.innerWidth <= 768) {
           mobileHeader.classList.add('fade-in');
           mobileHeader.style.opacity = '1';
         }
-    
-        const page = document.getElementById('page-content');
+
         page.classList.add('fade-in');
         page.style.opacity = '1';
-        document.querySelectorAll('.masonry-item').forEach((el, i) => setTimeout(() => el.classList.add('fade-in'), i * 150 + 300));
+        document.querySelectorAll('.masonry-item').forEach(item => {
+          item.style.opacity = '1';
+        });
       }, 1500);
-    
-      const menuBtn = document.getElementById('menu-toggle');
-      const sidebar = document.getElementById('sidebar');
-    
-      menuBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
-      });
+
+function toggleSidebar() {
+  sidebar.classList.toggle('active');
+  overlay.classList.toggle('active');
+}
+
+menuBtn.addEventListener('click', toggleSidebar);
+
+
+
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('active');
+  overlay.classList.remove('active');
+});
     });
-    </script>   
+  </script>
 </body>
 </html>
