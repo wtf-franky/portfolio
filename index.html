@@ -8,19 +8,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Franky | Baterista Freelancer</title>
+  
+  <!-- Favicon personalizado -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23ff4500%22>🥁</text></svg>">
+  
   <link rel="stylesheet" href="responsive-layout.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para ícones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .title-font {
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 2px;
-  font-weight: 500;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-}
-  .text-shadow {
-  text-shadow: 2px 2px 4px rgba(255,69,0,0.7);
-}
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+    .text-shadow {
+      text-shadow: 2px 2px 4px rgba(255,69,0,0.7);
+    }
     @keyframes logoIntro {
       0% {
         opacity: 0;
@@ -68,7 +76,29 @@
       .masonry {
         column-count: 2;
       }
+      #sidebar {
+      z-index: 1300; /* Mantém o menu acima de tudo */
     }
+    
+    #sidebar-overlay {
+      z-index: 1200; /* Overlay abaixo do menu mas acima do conteúdo */
+    }
+    
+    .footer-divider, 
+    footer {
+      position: relative;
+      z-index: 100; /* Rodapé abaixo do menu */
+    }
+    }
+    @media (min-width: 1025px) {
+    #sidebar {
+      z-index: 30; /* Mantém o valor original */
+    }
+    
+    .footer-divider {
+      z-index: 100; /* Garante que a linha fique acima do sidebar */
+    }
+  }
     @media (max-width: 640px) {
       .masonry {
         column-count: 1;
@@ -139,61 +169,54 @@
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
     }
-#sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 70vw;
-  max-width: 300px;
-  height: 100vh;
-  background-color: #000; /* preto */
-  padding: 3rem 1.5rem;
-  box-sizing: border-box;
-  color: white;
-  z-index: 1100;
-  pointer-events: none;
-  transform: translateX(-100%);
-  opacity: 0;
-  visibility: hidden;
-  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 2px;
-}
-
-/* Quando ativo, mostra o menu lateral */
-#sidebar.active {
-  transform: translateX(0);
-  pointer-events: auto;
-  opacity: 1;
-  visibility: visible;
-  display: block;
-  z-index: 1200;
-}
-
-/* Overlay que escurece o resto da página */
-#sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.7);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1100;
-  font-family: 'Bebas Neue', sans-serif;
-  letter-spacing: 2px;
-}
-
-/* Overlay ativo */
-#sidebar-overlay.active {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
+    #sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 70vw;
+      max-width: 300px;
+      height: 100vh;
+      background-color: #000;
+      padding: 3rem 1.5rem;
+      box-sizing: border-box;
+      color: white;
+      z-index: 1100;
+      pointer-events: none;
+      transform: translateX(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+    }
+    #sidebar.active {
+      transform: translateX(0);
+      pointer-events: auto;
+      opacity: 1;
+      visibility: visible;
+      display: block;
+      z-index: 1200;
+    }
+    #sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.7);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 1100;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+    }
+    #sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
     #sidebar a {
       color: white;
       text-decoration: none;
@@ -201,11 +224,62 @@
       font-size: large;
       letter-spacing: 2px;
     }
-
     #sidebar a:hover {
       color: #ff4500;
       text-decoration: underline;
     }
+    
+    /* Novos estilos para o rodapé */
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      margin-top: 10px;
+    }
+    
+    .social-icon {
+      color: #fff;
+      font-size: 24px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .social-icon:hover {
+      color: #ff4500;
+      transform: translateY(-3px);
+      background: rgba(255, 69, 0, 0.2);
+    }
+    
+    .copyright {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1.5px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    .copyright span {
+      color: #ff4500;
+    }
+    .footer-divider {
+    position: relative;
+    z-index: 100; /* Garante que fique acima do side menu */
+    height: 1px;
+    background-color: #333;
+    margin-top: 3rem;
+  }
   </style>
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden">
@@ -221,12 +295,11 @@
   <!-- Mobile Header -->
   <header class="flex md:hidden items-center justify-between px-6 py-4 bg-black text-white fixed top-0 left-0 w-full z-40" id="mobile-header">
     <div class="text-2xl title-font" style="color: #ff4500;">Franky</div>
-
     <button id="menu-toggle" class="text-white text-2xl focus:outline-none">☰</button>
   </header>
 
   <div class="flex opacity-0 pt-16 md:pt-0" id="page-content">
-    <!-- Sidebar (mobile starts hidden) -->
+    <!-- Sidebar -->
     <aside class="md:block w-1/4 min-h-screen px-6 py-12 bg-black z-30" id="sidebar">
       <div class="space-y-6">
         <div class="text-3xl title-font" style="color: #ff4500;">Franky</div>
@@ -258,9 +331,28 @@
         <hr class="border-t border-gray-700 w-16 mx-auto mb-6" />
         <p>
           Olá, sou o Franky, baterista freelancer com paixão por Rock e Metal.
-          Tenho experiência em vários géneros musicais e já trabalhei com artistas de nome como o Carlos Santos e Catana.
+          Tenho experiência em vários géneros musicais e já trabalhei com artistas como o Catana.
           Este portfolio mostra alguns dos meus trabalhos mais recentes e a minha dedicação à música.
         </p>
+      </section>
+
+      <!-- Section Próximas Datas -->
+      <section id="proximas-datas" class="my-12 px-4">
+        <h2 class="text-3xl title-font font-medium mb-4" style="color: #ff4500;">Próximas Datas</h2>
+        <ul class="space-y-4">
+          <li>
+            <p class="text-lg font-semibold" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 1.125rem;">15 de Junho 2025</p>
+            <p class="text-sm text-gray-400">Rock Night @ Lisboa — 21h00 — Lisboa Arena</p>
+          </li>
+          <li>
+            <p class="text-lg font-semibold" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 1.125rem;">28 de Junho 2025</p>
+            <p class="text-sm text-gray-400">Metal Fest @ Porto — 22h00 — Hard Club Porto</p>
+          </li>
+          <li>
+            <p class="text-lg font-semibold" style="font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 1.125rem;">12 de Julho 2025</p>
+            <p class="text-sm text-gray-400">Drum Solo Night @ Coimbra — 20h30 — Teatro Académico</p>
+          </li>
+        </ul>
       </section>
 
       <!-- Gallery Content -->
@@ -301,6 +393,24 @@
     </main>
   </div>
 
+  <!-- Footer com ícones de redes sociais -->
+<div class="footer-divider"></div>
+<footer class="mt-0 py-8 bg-black text-center"> <!-- Removi a borda superior do footer -->
+  <div class="footer-content">
+    <div class="social-icons">
+      <a href="https://www.instagram.com/_wtf.franky/" target="_blank" class="social-icon" aria-label="Instagram">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://www.youtube.com/@Franky_drummer" target="_blank" class="social-icon" aria-label="YouTube">
+        <i class="fab fa-youtube"></i>
+      </a>
+    </div>
+    <p class="copyright">
+      Website criado por <span>Franky</span> | Baterista Freelancer
+    </p>
+  </div>
+</footer>
+
   <!-- JS script -->
   <script>
     window.addEventListener('load', () => {
@@ -331,19 +441,17 @@
         });
       }, 1500);
 
-function toggleSidebar() {
-  sidebar.classList.toggle('active');
-  overlay.classList.toggle('active');
-}
+      function toggleSidebar() {
+        sidebar.classList.toggle('active');
+        overlay.classList.toggle('active');
+      }
 
-menuBtn.addEventListener('click', toggleSidebar);
+      menuBtn.addEventListener('click', toggleSidebar);
 
-
-
-overlay.addEventListener('click', () => {
-  sidebar.classList.remove('active');
-  overlay.classList.remove('active');
-});
+      overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      });
     });
   </script>
 </body>
