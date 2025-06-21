@@ -10,7 +10,9 @@
   <title>Franky | Baterista Freelancer</title>
   
   <!-- Favicon personalizado -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23ff4500%22>🥁</text></svg>">
+  <link rel="icon" href="img/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" href="img/android-chrome-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
   
   <link rel="stylesheet" href="responsive-layout.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -20,6 +22,33 @@
   
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Estilo personalizado para a barra de scroll */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #111;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #ff4500;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff5500;
+      transform: scale(1.05);
+    }
+    
+    /* Para Firefox */
+    * {
+      scrollbar-color: #ff4500 #111;
+      scrollbar-width: thin;
+    }
+
     .title-font {
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
@@ -29,6 +58,65 @@
     .text-shadow {
       text-shadow: 2px 2px 4px rgba(255,69,0,0.7);
     }
+    
+    /* Novas animações */
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0px);
+      }
+    }
+    
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.4);
+      }
+      70% {
+        box-shadow: 0 0 0 10px rgba(255, 69, 0, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 69, 0, 0);
+      }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
     @keyframes logoIntro {
       0% {
         opacity: 0;
@@ -43,6 +131,7 @@
         transform: scale(1.2);
       }
     }
+    
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -51,6 +140,7 @@
         opacity: 1;
       }
     }
+    
     @keyframes fadeOut {
       from {
         opacity: 1;
@@ -59,65 +149,124 @@
         opacity: 0;
       }
     }
+    
     .logo-anim {
       animation: logoIntro 1.5s ease forwards;
     }
+    
     .fade-out {
       animation: fadeOut 0.8s ease forwards;
     }
+    
     .fade-in {
       animation: fadeIn 0.8s ease forwards;
     }
+    
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .fade-in-left {
+      animation: fadeInLeft 0.8s ease forwards;
+    }
+    
+    .fade-in-right {
+      animation: fadeInRight 0.8s ease forwards;
+    }
+    
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+    
     .masonry {
       column-count: 3;
       column-gap: 1rem;
     }
+    
     @media (max-width: 1024px) {
       .masonry {
         column-count: 2;
       }
       #sidebar {
-      z-index: 1300; /* Mantém o menu acima de tudo */
+        z-index: 1300;
+      }
+      
+      #sidebar-overlay {
+        z-index: 1200;
+      }
+      
+      .footer-divider, 
+      footer {
+        position: relative;
+        z-index: 100;
+      }
     }
     
-    #sidebar-overlay {
-      z-index: 1200; /* Overlay abaixo do menu mas acima do conteúdo */
-    }
-    
-    .footer-divider, 
-    footer {
-      position: relative;
-      z-index: 100; /* Rodapé abaixo do menu */
-    }
-    }
     @media (min-width: 1025px) {
-    #sidebar {
-      z-index: 30; /* Mantém o valor original */
+      #sidebar {
+        z-index: 30;
+      }
+      
+      .footer-divider {
+        z-index: 100;
+      }
     }
     
-    .footer-divider {
-      z-index: 100; /* Garante que a linha fique acima do sidebar */
-    }
-  }
     @media (max-width: 640px) {
       .masonry {
         column-count: 1;
       }
     }
+    
     .masonry-item {
       break-inside: avoid;
       margin-bottom: 1rem;
       opacity: 0;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transform: translateZ(0);
     }
+    
+    .masonry-item:hover {
+      transform: scale(1.02) translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 69, 0, 0.3);
+    }
+    
     .masonry-item img {
       width: 100%;
       height: auto;
       display: block;
-      transition: filter 0.3s;
+      transition: all 0.4s ease;
+      transform: scale(1);
     }
+    
     .masonry-item:hover img {
-      filter: brightness(0.75);
+      transform: scale(1.05);
     }
+    
+    .masonry-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      padding: 15px 10px;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      opacity: 0;
+    }
+    
+    .masonry-item:hover .masonry-caption {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
     .btn-press-kit {
       display: inline-block;
       padding: 10px 20px;
@@ -126,12 +275,34 @@
       border-radius: 4px;
       text-decoration: none;
       font-weight: bold;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
+    
     .btn-press-kit:hover {
       background-color: #fff;
       color: #ff4500;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
     }
+    
+    .btn-press-kit::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    
+    .btn-press-kit:hover::after {
+      transform: translateX(100%);
+    }
+    
     #sobre {
       max-width: 700px;
       margin-left: auto;
@@ -144,21 +315,38 @@
       border-radius: 0;
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
+      transform: translateX(20px);
+      opacity: 0;
     }
+    
     #sobre h2 {
       color: #ff4500;
       text-align: right;
       margin-bottom: 1rem;
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
     }
-    #sobre hr {
-      width: 4rem;
-      margin-left: auto;
-      margin-right: 0;
-      border-color: #555;
-      margin-bottom: 1.5rem;
+    
+    #sobre h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+      width: 60px;
+      height: 3px;
+      background: #ff4500;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
     }
+    
+    #sobre:hover h2::after {
+      transform: scaleX(1);
+    }
+    
     #sobre p {
       font-size: 1.125rem;
       line-height: 1.6;
@@ -169,6 +357,7 @@
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
     }
+    
     #sidebar {
       position: fixed;
       top: 0;
@@ -188,7 +377,9 @@
       transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
+      border-right: 2px solid #ff4500;
     }
+    
     #sidebar.active {
       transform: translateX(0);
       pointer-events: auto;
@@ -197,6 +388,7 @@
       display: block;
       z-index: 1200;
     }
+    
     #sidebar-overlay {
       position: fixed;
       top: 0;
@@ -212,21 +404,41 @@
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
     }
+    
     #sidebar-overlay.active {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
     }
+    
     #sidebar a {
       color: white;
       text-decoration: none;
       font-family: 'Bebas Neue', sans-serif;
       font-size: large;
       letter-spacing: 2px;
+      position: relative;
+      padding-bottom: 5px;
+      display: inline-block;
     }
+    
     #sidebar a:hover {
       color: #ff4500;
-      text-decoration: underline;
+    }
+    
+    #sidebar a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #ff4500;
+      transition: width 0.3s ease;
+    }
+    
+    #sidebar a:hover::after {
+      width: 100%;
     }
     
     /* Novos estilos para o rodapé */
@@ -251,16 +463,18 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.1);
+      transform: translateZ(0);
     }
     
     .social-icon:hover {
       color: #ff4500;
-      transform: translateY(-3px);
+      transform: translateY(-5px) scale(1.1);
       background: rgba(255, 69, 0, 0.2);
+      box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
     }
     
     .copyright {
@@ -273,13 +487,104 @@
     .copyright span {
       color: #ff4500;
     }
+    
     .footer-divider {
-    position: relative;
-    z-index: 100; /* Garante que fique acima do side menu */
-    height: 1px;
-    background-color: #333;
-    margin-top: 3rem;
-  }
+      position: relative;
+      z-index: 100;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #ff4500, transparent);
+      margin-top: 3rem;
+    }
+    
+    /* Animação para o logo no sidebar */
+    #sidebar .title-font {
+      position: relative;
+      display: inline-block;
+      transform: translateZ(0);
+    }
+    
+    #sidebar .title-font::after {
+      position: absolute;
+      top: -10px;
+      right: -30px;
+      font-size: 1.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    /* Efeito de batida para o título principal */
+    .beat {
+      display: inline-block;
+      animation: beat 0.5s ease infinite alternate;
+    }
+    
+    @keyframes beat {
+      from { transform: scale(1); }
+      to { transform: scale(1.1); }
+    }
+
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    #lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    #lightbox-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      text-align: center;
+    }
+    
+    #lightbox-image {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(255, 69, 0, 0.5);
+    }
+    
+    #lightbox-caption {
+      color: white;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      margin-top: 15px;
+      font-size: 1.2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+    
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+    }
+    
+    #lightbox-close:hover {
+      color: #ff4500;
+      transform: scale(1.2);
+    }
+    
+    .lightbox-trigger {
+      cursor: zoom-in;
+    }
   </style>
 </head>
 <body class="bg-black text-white font-sans overflow-x-hidden">
@@ -295,30 +600,30 @@
   <!-- Mobile Header -->
   <header class="flex md:hidden items-center justify-between px-6 py-4 bg-black text-white fixed top-0 left-0 w-full z-40" id="mobile-header">
     <div class="text-2xl title-font" style="color: #ff4500;">Franky</div>
-    <button id="menu-toggle" class="text-white text-2xl focus:outline-none">☰</button>
+    <button id="menu-toggle" class="text-white text-2xl focus:outline-none transform hover:scale-110 transition-transform">
+      <span class="beat">🌐</span>
+    </button>
   </header>
+
+<div id="lightbox">
+    <span id="lightbox-close">&times;</span>
+    <div id="lightbox-content">
+      <img id="lightbox-image" src="" alt="Lightbox Image">
+      <div id="lightbox-caption"></div>
+    </div>
+  </div>
 
   <div class="flex opacity-0 pt-16 md:pt-0" id="page-content">
     <!-- Sidebar -->
     <aside class="md:block w-1/4 min-h-screen px-6 py-12 bg-black z-30" id="sidebar">
       <div class="space-y-6">
         <div class="text-3xl title-font" style="color: #ff4500;">Franky</div>
-        <div class="uppercase text-xs opacity-50" style="cursor: default;">Portfolio</div>
-        <nav class="mt-8 space-y-2 text-sm">
-          <div class="opacity-50 uppercase text-xs" style="cursor: default;">Trabalhos:</div>
-          <ul class="space-y-2">
-            <li><a class="hover:underline" style="cursor: default;">Trancoso com Catana - 2023</a></li>
-            <li><a href="https://youtu.be/VoT-lA9fmjg?si=FIns07ACJC_LmEEe" target="_blank" class="hover:underline" style="cursor: pointer;">MEO Marés Vivas com Catana -2024</a></li>
-            <li><a class="hover:underline" style="cursor: default;">Pêndulo com Catana - 2025</a></li>
-            <li><a class="hover:underline" style="cursor: default;">Freixial com Semião - 2025</a></li>
-          </ul>
-        </nav>
         <div class="mt-12 space-y-2 text-sm">
           <div class="opacity-50 uppercase text-xs" style="cursor: default;">Redes Sociais:</div>
           <a href="https://www.instagram.com/_wtf.franky/" target="_blank" class="hover:underline" style="cursor: pointer;">Instagram</a><br>
           <a href="https://www.youtube.com/@Franky_drummer" target="_blank" class="hover:underline" style="cursor: pointer;">YouTube</a>
           <a class="hover:underline" style="cursor: text;">wtf.franky05@gmail.com</a>
-          <a href="Press Kit.pdf" download class="btn-press-kit">Download Press-Kit</a>
+          <a href="Press Kit.pdf" download class="btn-press-kit pulse">Download Press-Kit</a>
         </div>
       </div>
     </aside>
@@ -328,7 +633,6 @@
       <!-- Section Sobre -->
       <section id="sobre" class="mb-12">
         <h2 class="text-3xl font-bold mb-4" style="color: #ff4500; text-align: right;">Sobre Mim</h2>
-        <hr class="border-t border-gray-700 w-16 mx-auto mb-6" />
         <p>
           Olá, sou o Franky, baterista freelancer com paixão por Rock e Metal.
           Tenho experiência em vários géneros musicais e já trabalhei com artistas como o Catana.
@@ -339,44 +643,123 @@
       <!-- Gallery Content -->
       <div class="masonry">
         <div class="masonry-item">
-          <a>
-            <img src="img/Trancoso2023.png" loading="lazy" alt="2023 Trancoso com Catana" />
-            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;">
-              <span class="font-semibold" style="cursor: default;">2023</span> Trancoso com Catana
+          <a href="https://www.youtube.com/watch?v=C0a8vMvGe54" target="_blank">
+            <img src="img/Trancoso-Backstage.png" loading="lazy" alt="2023 Trancoso Backstage com Catana" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2023</span> - Trancoso Backstage com Catana
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a href="https://www.youtube.com/watch?v=TVOgwFBDNro" target="_blank">
+            <img src="img/Trancoso-Documentary.png" loading="lazy" alt="2023 Trancoso com Catana" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2023</span> - Trancoso com Catana
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a class="lightbox-trigger" style="cursor: pointer;" data-src="img/Trancoso2023.png" data-caption="2023 Trancoso com Catana">
+            <img src="img/Trancoso2023.png" style="cursor: pointer;" loading="lazy" alt="2023 Trancoso com Catana" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2023</span> - Trancoso com Catana
+              </div>
             </div>
           </a>
         </div>
         <div class="masonry-item">
           <a href="https://youtu.be/VoT-lA9fmjg?si=FIns07ACJC_LmEEe" target="_blank">
             <img src="img/MV2024.png" loading="lazy" alt="2024 MEO Marés Vivas com Catana" />
-            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: pointer;">
-              <span class="font-semibold" style="cursor: pointer;">2024</span> MEO Marés Vivas com Catana
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2024</span> - MEO Marés Vivas com Catana
+              </div>
             </div>
           </a>
         </div>
         <div class="masonry-item">
-          <a>
-            <img src="img/Pendulo2025.jpeg" loading="lazy" alt="2025 Pêndulo – Fábrica da Criatividade com Catana" />
-            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;">
-              <span class="font-semibold" style="cursor: default;">2025</span> Pêndulo – Fábrica da Criatividade com Catana
+          <a href="https://www.youtube.com/watch?v=NfUZVd2CbRQ" target="_blank">
+            <img src="img/LINKIN-PARK-FAINT.png" loading="lazy" alt="2024 Linkin Park Drum Cover" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2024</span> - Linkin Park Drum Cover
+              </div>
             </div>
           </a>
         </div>
         <div class="masonry-item">
-          <a>
-            <img src="img/Freixial2025.jpg" loading="lazy" alt="2025 Freixial com Semião" />
-            <div class="mt-2 text-xs uppercase tracking-widest opacity-75 hover:opacity-100 transition" style="cursor: default;">
-              <span class="font-semibold" style="cursor: default;">2025</span> Freixial com Semião
+          <a href="https://www.youtube.com/watch?v=CA9rSMVmrBg" target="_blank">
+            <img src="img/Henka-DrumCover.png" loading="lazy" alt="2025 Henka Drum Cover" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2025</span> - Henka Drum Cover
+              </div>
             </div>
           </a>
         </div>
+        <div class="masonry-item">
+          <a href="https://www.youtube.com/watch?v=NdYupTnvmVc" target="_blank">
+            <img src="img/Mantra-DrumCover.png" loading="lazy" alt="2025 Bring Me The Horizon Drum Cover" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2025</span> - Bring Me The Horizon Drum Cover
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a href="https://www.youtube.com/watch?v=NsCT2gZoflM" target="_blank">
+            <img src="img/333-DrumCover.png" loading="lazy" alt="2025 Matuê Drum Cover" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2025</span> - Matuê Drum Cover
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a class="lightbox-trigger" style="cursor: pointer;" data-src="img/Pendulo2025-2.jpeg" data-caption="2025 Pêndulo – Fábrica da Criatividade com Catana">
+            <img src="img/Pendulo2025-2.jpeg" style="cursor: pointer;" loading="lazy" alt="2025 Pêndulo – Fábrica da Criatividade com Catana" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2025</span> - Pêndulo – Fábrica da Criatividade com Catana
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a class="lightbox-trigger" style="cursor: pointer;" data-src="img/Pendulo2025-1.jpeg" data-caption="2025 Pêndulo – Fábrica da Criatividade com Catana">
+            <img src="img/Pendulo2025-1.jpeg" style="cursor: pointer;" loading="lazy" alt="2025 Pêndulo – Fábrica da Criatividade com Catana" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2025</span> - Pêndulo – Fábrica da Criatividade com Catana
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="masonry-item">
+          <a class="lightbox-trigger" style="cursor: pointer;" data-src="img/Freixial2025.jpg" data-caption="2025 Freixial com Semião">
+            <img src="img/Freixial2025.jpg" style="cursor: pointer;" loading="lazy" alt="2025 Freixial com Semião" />
+            <div class="masonry-caption">
+              <div class="mt-2 text-xs uppercase tracking-widest" style="color: #ff4500; font-weight: bold;">
+                <span>2025</span> - Freixial com Semião
+              </div>
+            </div>
+          </a>
+        </div>
+        
       </div>
     </main>
   </div>
 
   <!-- Footer com ícones de redes sociais -->
 <div class="footer-divider"></div>
-<footer class="mt-0 py-8 bg-black text-center"> <!-- Removi a borda superior do footer -->
+<footer class="mt-0 py-8 bg-black text-center">
   <div class="footer-content">
     <div class="social-icons">
       <a href="https://www.instagram.com/_wtf.franky/" target="_blank" class="social-icon" aria-label="Instagram">
@@ -401,6 +784,46 @@
       const sidebar = document.getElementById('sidebar');
       const overlay = document.getElementById('sidebar-overlay');
       const page = document.getElementById('page-content');
+      const sobreSection = document.getElementById('sobre');
+      // Lightbox functionality
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxClose = document.getElementById('lightbox-close');
+      const lightboxTriggers = document.querySelectorAll('.lightbox-trigger');
+      
+      lightboxTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+          e.preventDefault();
+          const imgSrc = trigger.getAttribute('data-src');
+          const caption = trigger.getAttribute('data-caption');
+          
+          lightboxImage.src = imgSrc;
+          lightboxCaption.textContent = caption;
+          lightbox.classList.add('active');
+          document.body.style.overflow = 'hidden'; // Impede o scroll da página
+        });
+      });
+      
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
+      
+      // Fechar lightbox com ESC
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+          lightbox.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      });
 
       if (window.innerWidth <= 768) {
         mobileHeader.style.opacity = '0';
@@ -417,8 +840,20 @@
 
         page.classList.add('fade-in');
         page.style.opacity = '1';
-        document.querySelectorAll('.masonry-item').forEach(item => {
-          item.style.opacity = '1';
+        
+        // Animar a seção "Sobre Mim"
+        setTimeout(() => {
+          sobreSection.classList.add('fade-in-right');
+          sobreSection.style.opacity = '1';
+          sobreSection.style.transform = 'translateX(0)';
+        }, 300);
+        
+        // Animar os itens da galeria com delays diferentes
+        document.querySelectorAll('.masonry-item').forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('fade-in-up');
+            item.style.opacity = '1';
+          }, 400 + (index * 200));
         });
       }, 1500);
 
@@ -433,6 +868,17 @@
         sidebar.classList.remove('active');
         overlay.classList.remove('active');
       });
+      
+      // Adicionar efeito de batida ao clicar no logo
+      const logo = document.querySelector('.title-font');
+      if (logo) {
+        logo.addEventListener('click', () => {
+          logo.classList.add('beat');
+          setTimeout(() => {
+            logo.classList.remove('beat');
+          }, 500);
+        });
+      }
     });
   </script>
 </body>
