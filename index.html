@@ -357,6 +357,213 @@
       font-family: 'Bebas Neue', sans-serif;
       letter-spacing: 2px;
     }
+
+    /* Estilos para a seção Próximas Datas */
+    #proximas-datas {
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    
+    #proximas-datas h2 {
+      color: #ff4500;
+      text-align: left;
+      margin-bottom: 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 2px;
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    #proximas-datas h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: #ff4500;
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    
+    #proximas-datas:hover h2::after {
+      transform: scaleX(1);
+    }
+    
+    .upcoming-dates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .date-card {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid #333;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .date-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ff4500, #ff6500);
+    }
+    
+    .date-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 30px rgba(255, 69, 0, 0.3);
+      border-color: #ff4500;
+    }
+    
+    .date-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .date-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: #ff4500;
+      line-height: 1;
+      letter-spacing: 1px;
+    }
+    
+    .date-month {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: #999;
+      letter-spacing: 1px;
+      margin-top: -5px;
+    }
+    
+    .date-status {
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+    
+    .status-confirmed {
+      background: rgba(34, 197, 94, 0.2);
+      color: #22c55e;
+      border: 1px solid #22c55e;
+    }
+    
+    .status-pending {
+      background: rgba(251, 191, 36, 0.2);
+      color: #fbbf24;
+      border: 1px solid #fbbf24;
+    }
+    
+    .status-soldout {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: 1px solid #ef4444;
+    }
+    
+    .date-event {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .date-venue {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #999;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .date-time {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .date-card-footer {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .date-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      color: #ff4500;
+      letter-spacing: 1px;
+    }
+    
+    .date-link {
+      color: #ff4500;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ff4500;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+    }
+    
+    .date-link:hover {
+      background: #ff4500;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    
+    .no-dates {
+      text-align: center;
+      color: #999;
+      font-style: italic;
+      padding: 2rem;
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+      font-size: 1.1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .upcoming-dates-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .date-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .date-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+    }
     
     #sidebar {
       position: fixed;
@@ -640,6 +847,87 @@
         </p>
       </section>
 
+      <!-- Section Próximas Datas -->
+      <section id="proximas-datas" class="mb-12">
+        <h2 class="text-3xl font-bold mb-4" style="color: #ff4500;">Próximas Datas</h2>
+        <div class="upcoming-dates-grid">
+<!-- Exemplo de evento confirmado -->
+          <div class="date-card">
+            <div class="date-card-header">
+              <div>
+                <div class="date-number">11</div>
+                <div class="date-month">JULHO</div>
+              </div>
+              <div class="date-status status-confirmed">Confirmado</div>
+            </div>
+            <div class="date-event">Sunset</div>
+            <div class="date-venue">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Esplanada Palmeiras, Castelo Branco</span>
+            </div>
+            <div class="date-time">
+              <i class="fas fa-clock"></i>
+              <span>18:00</span>
+            </div>
+            <div class="date-card-footer">
+              <div class="date-price">Entrada Livre</div>
+              <!-- <a href="#" class="date-link">Bilhetes</a> -->
+            </div>
+          </div>
+
+<!-- Exemplo de evento pendente
+          <div class="date-card">
+            <div class="date-card-header">
+              <div>
+                <div class="date-number">28</div>
+                <div class="date-month">MAR</div>
+              </div>
+              <div class="date-status status-pending">Pendente</div>
+            </div>
+            <div class="date-event">Noite Metal Underground</div>
+            <div class="date-venue">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Plano B, Porto</span>
+            </div>
+            <div class="date-time">
+              <i class="fas fa-clock"></i>
+              <span>22:30</span>
+            </div>
+            <div class="date-card-footer">
+              <div class="date-price">€10</div>
+              <a href="#" class="date-link">Info</a>
+            </div>
+          </div>
+-->
+
+<!-- Exemplo de evento esgotado
+          <div class="date-card">
+            <div class="date-card-header">
+              <div>
+                <div class="date-number">05</div>
+                <div class="date-month">ABR</div>
+              </div>
+              <div class="date-status status-soldout">Esgotado</div>
+            </div>
+            <div class="date-event">Concerto com Catana</div>
+            <div class="date-venue">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Coliseu dos Recreios, Lisboa</span>
+            </div>
+            <div class="date-time">
+              <i class="fas fa-clock"></i>
+              <span>20:00</span>
+            </div>
+            <div class="date-card-footer">
+              <div class="date-price">€20-35</div>
+              <a href="#" class="date-link">Esgotado</a>
+            </div>
+          </div>
+        </div>
+-->
+      </section>
+
+
       <!-- Gallery Content -->
       <div class="masonry">
         <div class="masonry-item">
@@ -785,6 +1073,8 @@
       const overlay = document.getElementById('sidebar-overlay');
       const page = document.getElementById('page-content');
       const sobreSection = document.getElementById('sobre');
+      const proximasDatasSection = document.getElementById('proximas-datas');
+      
       // Lightbox functionality
       const lightbox = document.getElementById('lightbox');
       const lightboxImage = document.getElementById('lightbox-image');
@@ -848,12 +1138,28 @@
           sobreSection.style.transform = 'translateX(0)';
         }, 300);
         
+        // Animar a seção "Próximas Datas"
+        setTimeout(() => {
+          proximasDatasSection.classList.add('fade-in-left');
+          proximasDatasSection.style.opacity = '1';
+          proximasDatasSection.style.transform = 'translateX(0)';
+          
+          // Animar os cards de datas
+          document.querySelectorAll('.date-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('fade-in-up');
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, index * 150);
+          });
+        }, 500);
+        
         // Animar os itens da galeria com delays diferentes
         document.querySelectorAll('.masonry-item').forEach((item, index) => {
           setTimeout(() => {
             item.classList.add('fade-in-up');
             item.style.opacity = '1';
-          }, 400 + (index * 200));
+          }, 800 + (index * 200));
         });
       }, 1500);
 
